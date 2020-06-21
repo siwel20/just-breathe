@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Just Breathe</title>
+</head>
+
+<body class="background-img-good white-text" id="body">
+    <header class="card transparent z-depth-3">
+
+        <div class="row" id="header">
+            <div class="col s12 l6">
+                <!-- <div class="valign-wrapper"> -->
+                    <h1 class="center" id="header-title">Just Breathe <i class=" medium material-icons hide-on-small-only">landscape</i></h1>
+                <!-- </div> -->
+            </div>
+            <!-- Temperature Display-->
+            <div class="col s12 l3 offset-l3">
+                <div id="temp-display" class="center-align"></div>
+                <!--widget to display AQI-->
+                <!-- <div name="airvisual_widget" key="9SzoEJ46s9XxF9Lhp"></div>-->
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main>
+            <div class="row">
+                <div class="col s12">
+                    <div class=" card transparent center-align z-depth-5 text-shadow" id="container">
+                        <!--this information will need to be dynamically inserted into these divs-->
+                        <div id="cityName"></div>
+                        <div id="date"></div>
+                        <div class="result-title" id="aq">Air Quality Index:</div>
+                        <div class="result-title" id="pc-title">Pollen Information:</div>
+                        <div class="large-600" id="pc">
+                            <!-- dynamically generated pollen info goes here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="bottom-div">
+                    <div class="col s12 push-m6 m6 push-l6 l5 offset-l1 center" id="references">
+                        <div>
+                            <a href="#aqi-modal" class="btn light-green lighten-1 modal-trigger small-text ref" id="aqi-ref">Air Quality Index
+    
+                            Reference</a>
+                        </div>
+                        <div>
+                            <a href="#pollen-modal" class="btn light-green lighten-1 modal-trigger small-text ref">Pollen Index Reference</a>
+                        </div>
+                    </div>
+                    <div class="col s12 pull-m6 m6 pull-l6 l6 " id="search-container">
+                        <div class="card transparent z-depth-3">
+                            <div class="large-600" id="searchHeader">Search for a new city:</div>
+                            <div class="row">
+                                <div class="col s12 xl9">
+                                    <label for="city"></label>
+                                    <input type="text" name="cityInput" placeholder="Enter City Here" id="searchCity" class="white-text" />
+                                </div>
+                                <div class="col s12 l3">
+                                    <button class="btn waves-effect light-green lighten-1" type="submit" name="action"
+                                        id="submit-btn">
+                                        <i class=" small material-icons">search</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- History Container -->
+                        <div class="saved-container">
+                            <div class="large-600" id="history-title">
+                                <p>History:</p>
+                            </div>
+                            <div id="history-container" class='collection'></div>
+                            <button class="btn waves-effect light-green lighten-1" type="button" id="clear-history">Clear History</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+          
+                 <!-- Modal for Pollen Begin-->
+                 <div class="modal" id="pollen-modal">
+                    <div class="container small-text width-100 black-text" id="pollen-table">
+                        <!-- Intro Information -->
+                        <div class="row margin left-align pollen">
+                            <div class="col s12"><b>What Does Pollen Index Mean?</b></div>
+                            <div class="col s12">The pollen index is the level of airborne grains concentration per category and species.</div>
+                        </div>
+                        <!-- Score and descritpion titles -->
+                        <div class="row margin grey lighten-1 left-align pollen">
+                            <div class="col s4">Score</div>
+                            <div class="col s8">Description</div>
+                        </div>
+                        <!-- High -->
+                        <div class="row margin red left-align pollen">
+                            <div class="col s4">5</div>
+                            <div class="col s8">High</div>
+                        </div>
+                        <!-- Medium to High -->
+                        <div class="row margin orange left-align pollen">
+                            <div class="col s4">4</div>
+                            <div class="col s8">Medium to High</div>
+                        </div>
+                        <!-- Medium -->
+                        <div class="row margin yellow left-align pollen">
+                            <div class="col s4">3</div>
+                            <div class="col s8">Medium</div>
+                        </div>
+                        <!-- Low to Medium -->
+                        <div class="row margin lime lighten-1 lighten-1 left-align pollen">
+                            <div class="col s4">2</div>
+                            <div class="col s8">Low to Medium</div>
+                        </div>
+                        <!-- Low -->
+                        <div class="row margin light-green lighten-1 left-align pollen">
+                            <div class="col s4">1</div>
+                            <div class="col s8">Low</div>
+                        </div>
+                        <!-- Minimal to None -->
+                        <div class="row margin green left-align pollen">
+                            <div class="col s4">0</div>
+                            <div class="col s8">Minimal to None</div>
+                        </div>
+                        <!-- Null -->
+                        <div class="row margin left-align pollen">
+                            <div class="col s4">Null</div>
+                            <div class="col s8">Not in season</div>
+                        </div>
+                    </div>
+                 </div>
+                 <!-- Modal for Pollen End-->
+          
+            <!-- Modal for AQI begin  -->
+            <div class="modal" id="aqi-modal">
+                <div class="container width-100" id="air-table">
+                    <!-- Top info -->
+                    <div class="row margin grey left-align">
+                        <div class="col s1">Value</div>
+                        <div class="col s2">Color</div>
+                        <div class="col s3">Level of Health concern</div>
+                        <div class="col s6">Meaning</div>
+                    </div>
+                    <!-- Good  -->
+                    <div class="row margin green left-align">
+                        <div class="col s1">0-50</div>
+                        <div class="col s2">Green</div>
+                        <div class="col s3">Good</div>
+                        <div class="col s6">Air Quality is considered satisfactory, and air
+                            pollution poses little to no risk</div>
+                    </div>
+                    <!-- Moderate -->
+                    <div class="row margin yellow left-align black-text">
+                        <div class="col s1">51-100</div>
+                        <div class="col s2">Yellow</div>
+                        <div class="col s3">Moderate</div>
+                        <div class="col s6">Air Quality is acceptable; however, for some
+                            pollutants there may be a moderate health concern for a small number of people
+                            who are unusually sensitive to air pollution.</div>
+                    </div>
+                    <!-- Unhealthy for sensitive groups -->
+                    <div class="row margin orange left-align">
+                        <div class="col s1">101-150</div>
+                        <div class="col s2">Orange</div>
+                        <div class="col s3">Unhealthy for sensitive groups</div>
+                        <div class="col s6">Members of sensitive groups may experience health
+                            effects. The general public is not likely to be affected.</div>
+                    </div>
+                    <!-- Unhealty -->
+                    <div class="row margin red left-align">
+                        <div class="col s1">151-200</div>
+                        <div class="col s2">Red</div>
+                        <div class="col s3">Unhealthy</div>
+                        <div class="col s6">Everyone may begin to experience health effects;
+                            members of sensitive groups may experience more serious health effects</div>
+                    </div>
+                    <!-- Very unhealty -->
+                    <div class="row margin purple left-align">
+                        <div class="col s1">201-300</div>
+                        <div class="col s2">Purple</div>
+                        <div class="col s3">Very Unhealthy</div>
+                        <div class="col s6">Health Alert: everyone may experience more serious
+                            health effects.</div>
+                    </div>
+                    <!-- Hazardous -->
+                    <div class="row margin red darken-4 left-align">
+                        <div class="col s1">301-500</div>
+                        <div class="col s2">Maroon</div>
+                        <div class="col s3">Hazardous</div>
+                        <div class="col s6">Health warnings of emergency conditions. The entire
+                            population is more likely to be affected.</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal for AQI end -->
+        </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.airvisual.com/scripts/widget_v2.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
