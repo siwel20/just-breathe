@@ -54,14 +54,18 @@ We also included the posibility to search for other cities information and gave 
 
 ## Website
 To visit the page go to:
-https://parkerrobison.github.io/just-breathe/
+https://siwel20.github.io/just-breathe/
+
+## Github
+* Group work was done in the following Github repository: https://github.com/parkerrobison/just-breathe
+* A copy of the group work has been added to my repository at: https://github.com/siwel20/just-breathe
 
 
 ## Contribution
 
 * @parkerrobison - Display/layout, materialize, history data: display only 6 cities, github, merging, and error handling. 
 * @jasonmcgill - Get visitor's long and lat function. Display current city and date. Display modals for error handling.
-* @siwel20- Listener and button click handler for search city data. Pollen modal and reference button formating.
+* @siwel20- Listener and button click handler for search city data. Created the pollen modal and reference button formating.
 * @florhaidee - Air quailty index: Fetch information and Display.  History data namevvalidation. Search by History. 
 * @MatthewMcFadden - Pollen count fetch.  Display temperature function. History data: save and display
 
